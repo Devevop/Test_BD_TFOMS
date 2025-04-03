@@ -1,0 +1,55 @@
+﻿<Page x:Class="TFOMS_testv1.Pages.EditPeople"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TFOMS_testv1.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditPeople">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock HorizontalAlignment="Center" FontSize="20" TextAlignment="Center" Margin="10" Text="Добавление/редактирование/Удаление"/>
+            <Viewbox x:Name="pShow"  Height="400" VerticalAlignment="Top">
+                <ScrollViewer >
+                    <DataGrid IsReadOnly="True" Name="dbPeople" AutoGenerateColumns="False"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="id" Binding="{Binding p_id}" />
+                            <DataGridTextColumn Header="ПОЛИС" Binding="{Binding enp}" />
+                            <DataGridTextColumn Header="Ф" Binding="{Binding fam}" />
+                            <DataGridTextColumn Header="И" Binding="{Binding im}" />
+                            <DataGridTextColumn Header="О" Binding="{Binding ot}" />
+                            <DataGridTextColumn Header="Пол" Binding="{Binding w}" />
+                            <DataGridTextColumn Header="Дата рождения" Binding="{Binding dr, StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="Код мед.орг." Binding="{Binding lpu}" />
+                            <DataGridTextColumn Header="Прикреплён" Binding="{Binding lpudt, StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="Откреплён" Binding="{Binding lpudx, StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="Код уч. мед.орг." Binding="{Binding lpuuch}" />
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="X" Click="DeletePeople"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Редактировать" Click="EditItem"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+            </Viewbox>
+        </StackPanel>
+        
+        <Button Grid.Row="1"  Content="Добавить" Click="AddNavigate" />
+    </Grid>
+</Page>

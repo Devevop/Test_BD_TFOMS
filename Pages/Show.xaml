@@ -1,0 +1,113 @@
+﻿<Page x:Class="TFOMS_testv1.Pages.Show"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TFOMS_testv1.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Show">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Viewbox  HorizontalAlignment="Left" Width="300">
+            <TextBlock  Text="Выберите таблицу:"  FontSize="15"/>
+            </Viewbox>
+            <Viewbox HorizontalAlignment="Left" Width="300"  Margin="0 20 0 20">
+                <ComboBox Name="cmbType" SelectionChanged="Type" Width="300" HorizontalAlignment="Left" Height="30" FontSize="20" >
+                    <ComboBoxItem>PEOPLE</ComboBoxItem>
+                    <ComboBoxItem>HISTLPU</ComboBoxItem>
+                    <ComboBoxItem>LPU</ComboBoxItem>
+                    <ComboBoxItem>T001</ComboBoxItem>
+                    <ComboBoxItem>T007</ComboBoxItem>
+                </ComboBox>
+            </Viewbox>
+        </StackPanel>
+        
+        <Grid VerticalAlignment="Top" Grid.Row="1">
+            <Viewbox Opacity="0" x:Name="pShow">
+                <ScrollViewer >
+                    <DataGrid IsReadOnly="True" Name="dbPeople" AutoGenerateColumns="False"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="id" Binding="{Binding p_id}" />
+                            <DataGridTextColumn Header="ПОЛИС" Binding="{Binding enp}" />
+                            <DataGridTextColumn Header="Ф" Binding="{Binding fam}" />
+                            <DataGridTextColumn Header="И" Binding="{Binding im}" />
+                            <DataGridTextColumn Header="О" Binding="{Binding ot}" />
+                            <DataGridTextColumn Header="Пол" Binding="{Binding w}" />
+                            <DataGridTextColumn Header="Дата рождения" Binding="{Binding dr, StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="Код мед.орг." Binding="{Binding lpu}" />
+                            <DataGridTextColumn Header="Прикреплён" Binding="{Binding lpudt, StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="Откреплён" Binding="{Binding lpudx, StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="Код уч. мед.орг." Binding="{Binding lpuuch}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+            </Viewbox>
+            <Viewbox Opacity="0" x:Name="hShow">
+                <ScrollViewer>
+                    <DataGrid IsReadOnly="True" Name="dbHISTLPU" AutoGenerateColumns="False"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="id" Binding="{Binding HISTLPU_id}" />
+                            <DataGridTextColumn Header="p~id" Binding="{Binding p_id}" />
+                            <DataGridTextColumn Header="Код мед.орг." Binding="{Binding lpu}" />
+                            <DataGridTextColumn Header="Прикреплён" Binding="{Binding lpudt, StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="Откреплён" Binding="{Binding lpudx, StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="Код уч. мед.орг." Binding="{Binding district}" />
+                            <DataGridTextColumn Header="код подразделения" Binding="{Binding subdir}" />
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="X" Click="DeletePrk"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+            </Viewbox>
+            <Viewbox Opacity="0" x:Name="lShow">
+                <ScrollViewer>
+                    <DataGrid IsReadOnly="True" Name="dbLPU" AutoGenerateColumns="False"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="id" Binding="{Binding LPU_id}" />
+                            <DataGridTextColumn Header="Код мед.орг." Binding="{Binding code}" />
+                            <DataGridTextColumn Header="Наименование мед.орг" Binding="{Binding caption}" />
+                            <DataGridTextColumn Header="ФИО главврача" Binding="{Binding bossname}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+            </Viewbox>
+            <Viewbox Opacity="0" x:Name="t1Show">
+                <ScrollViewer>
+                    <DataGrid IsReadOnly="True" Name="dbt1" AutoGenerateColumns="False"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="id" Binding="{Binding T001_id}" />
+                            <DataGridTextColumn Header="Код мед.орг." Binding="{Binding mcod}" />
+                            <DataGridTextColumn Header="Наименование подразделения" Binding="{Binding nam_me}" />
+                            <DataGridTextColumn Header="Код уч. в мед.орг." Binding="{Binding nom_podr}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+            </Viewbox>
+            <Viewbox Opacity="0" x:Name="t7Show">
+                <ScrollViewer>
+                    <DataGrid IsReadOnly="True" Name="dbt7" AutoGenerateColumns="False"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="id" Binding="{Binding T007_id}" />
+                            <DataGridTextColumn Header="Код мед.орг." Binding="{Binding code_mo}" />
+                            <DataGridTextColumn Header="Наименование участка" Binding="{Binding name_depth}" />
+                            <DataGridTextColumn Header="Код подразделения в мед.орг." Binding="{Binding nom_podr}" />
+                            <DataGridTextColumn Header="Код уч. в мед.орг." Binding="{Binding depth}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+            </Viewbox>
+        </Grid>
+        
+    </Grid>
+</Page>

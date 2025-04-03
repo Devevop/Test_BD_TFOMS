@@ -1,0 +1,97 @@
+﻿<Page x:Class="TFOMS_testv1.Pages.Found"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TFOMS_testv1.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Found">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Viewbox Height="40">
+                <TextBlock TextAlignment="Center" HorizontalAlignment="Center" FontSize="20">Поиск</TextBlock>
+            </Viewbox>
+
+            <StackPanel Orientation="Horizontal">
+                <Viewbox Height="40">
+                    <Grid Margin="1">
+                        <TextBlock Name="FindVisible" VerticalAlignment="Center" TextAlignment="Left" Margin="5" Foreground="#FFB5DEA4">Введите ФИО или ПОЛИС для поиска...</TextBlock>
+                        <TextBox  VerticalAlignment="Center" Foreground="#FF2F7113" Background="Transparent" TextChanged="Find" Name="FindText"  Width="250"/>
+                    </Grid>
+                </Viewbox>
+                <Viewbox>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center">Дата рождения: </TextBlock>
+                        <DatePicker Name="findDr" SelectedDateChanged="DateFilter">
+                            <DatePicker.Resources>
+                                <Style TargetType="DatePickerTextBox">
+                                    <Setter Property="IsReadOnly" Value="True"/>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
+                    </StackPanel>
+                </Viewbox>
+
+            </StackPanel>
+
+        </StackPanel>
+        <ScrollViewer Grid.Row="1">
+            <Viewbox VerticalAlignment="Top">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock x:Name="proverka" Foreground="#FFD44A4A" FontSize="20" FontWeight="Bold" >
+                        <TextBlock.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#4CCAE0BD"/>
+                                <GradientStop Color="#4CBCF37B" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Background>
+                    </TextBlock>
+                    <ListView  Name="listFound" SelectionMode="Multiple">
+                        <ListView.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#66FFFFFF"/>
+                                <GradientStop Color="#66FFFFFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListView.Background>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+
+                                <Border BorderThickness="1" BorderBrush="#FF2F7113">
+                                    <Grid Margin="10">
+                                        <StackPanel Grid.Column="1"  VerticalAlignment="Top">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding fam}"/>
+                                                <TextBlock Text=" "/>
+                                                <TextBlock Text="{Binding im}"/>
+                                                <TextBlock Text=" "/>
+                                                <TextBlock Text="{Binding ot}"/>
+                                                <TextBlock Text=", "/>
+                                                <TextBlock Text="{Binding dr, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                                                <TextBlock Text=" - "/>
+                                                <TextBlock Text="{Binding prk}" />
+                                                <TextBlock Text="{Binding z0}"/>
+                                                <TextBlock Text="{Binding caption}"/>
+                                                <TextBlock Text="{Binding z1}"/>
+                                                <TextBlock Text="{Binding nam_mo}"/>
+                                                <TextBlock Text="{Binding z1}"/>
+                                                <TextBlock Text="{Binding name_depth}"/>
+                                            </StackPanel>
+
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+                
+            </Viewbox>
+        </ScrollViewer>
+    </Grid>
+</Page>

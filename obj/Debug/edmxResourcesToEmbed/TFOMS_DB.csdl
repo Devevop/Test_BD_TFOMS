@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TFOMS_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="HISTLPU">
+    <Key>
+      <PropertyRef Name="HISTLPU_id" />
+    </Key>
+    <Property Name="HISTLPU_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="p_id" Type="Int32" Nullable="false" />
+    <Property Name="lpu" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lpudt" Type="DateTime" Precision="0" />
+    <Property Name="lpudx" Type="DateTime" Precision="0" />
+    <Property Name="district" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="subdir" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PEOPLE" Relationship="Self.FK_HISTLPU_PEOPLE" FromRole="HISTLPU" ToRole="PEOPLE" />
+  </EntityType>
+  <EntityType Name="LPU">
+    <Key>
+      <PropertyRef Name="LPU_id" />
+    </Key>
+    <Property Name="LPU_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="caption" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bossname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PEOPLE">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="enp" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fam" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="im" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ot" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="w" Type="Int32" Nullable="false" />
+    <Property Name="dr" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="lpu" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="lpudt" Type="DateTime" Precision="0" />
+    <Property Name="lpudx" Type="DateTime" Precision="0" />
+    <Property Name="lpuuch" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HISTLPU" Relationship="Self.FK_HISTLPU_PEOPLE" FromRole="PEOPLE" ToRole="HISTLPU" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T001">
+    <Key>
+      <PropertyRef Name="T001_id" />
+    </Key>
+    <Property Name="T001_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mcod" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nam_me" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom_podr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T007">
+    <Key>
+      <PropertyRef Name="T007_id" />
+    </Key>
+    <Property Name="T007_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code_mo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name_depth" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom_podr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="depth" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_HISTLPU_PEOPLE">
+    <End Role="PEOPLE" Type="Self.PEOPLE" Multiplicity="1" />
+    <End Role="HISTLPU" Type="Self.HISTLPU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEOPLE">
+        <PropertyRef Name="p_id" />
+      </Principal>
+      <Dependent Role="HISTLPU">
+        <PropertyRef Name="p_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TFOMS_DBEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="HISTLPU" EntityType="Self.HISTLPU" />
+    <EntitySet Name="LPU" EntityType="Self.LPU" />
+    <EntitySet Name="PEOPLE" EntityType="Self.PEOPLE" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="T001" EntityType="Self.T001" />
+    <EntitySet Name="T007" EntityType="Self.T007" />
+    <AssociationSet Name="FK_HISTLPU_PEOPLE" Association="Self.FK_HISTLPU_PEOPLE">
+      <End Role="PEOPLE" EntitySet="PEOPLE" />
+      <End Role="HISTLPU" EntitySet="HISTLPU" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

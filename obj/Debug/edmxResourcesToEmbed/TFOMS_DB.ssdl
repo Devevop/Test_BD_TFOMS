@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище TFOMS_DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="HISTLPU">
+    <Key>
+      <PropertyRef Name="HISTLPU_id" />
+    </Key>
+    <Property Name="HISTLPU_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="p_id" Type="int" Nullable="false" />
+    <Property Name="lpu" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="lpudt" Type="date" />
+    <Property Name="lpudx" Type="date" />
+    <Property Name="district" Type="varchar" MaxLength="10" />
+    <Property Name="subdir" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="LPU">
+    <Key>
+      <PropertyRef Name="LPU_id" />
+    </Key>
+    <Property Name="LPU_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="caption" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="bossname" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PEOPLE">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="enp" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="fam" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="im" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="ot" Type="varchar" MaxLength="40" />
+    <Property Name="w" Type="int" Nullable="false" />
+    <Property Name="dr" Type="date" Nullable="false" />
+    <Property Name="lpu" Type="varchar" MaxLength="6" />
+    <Property Name="lpudt" Type="date" />
+    <Property Name="lpudx" Type="date" />
+    <Property Name="lpuuch" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="T001">
+    <Key>
+      <PropertyRef Name="T001_id" />
+    </Key>
+    <Property Name="T001_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mcod" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="nam_me" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="nom_podr" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T007">
+    <Key>
+      <PropertyRef Name="T007_id" />
+    </Key>
+    <Property Name="T007_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code_mo" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="name_depth" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="nom_podr" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="depth" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_HISTLPU_PEOPLE">
+    <End Role="PEOPLE" Type="Self.PEOPLE" Multiplicity="1" />
+    <End Role="HISTLPU" Type="Self.HISTLPU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEOPLE">
+        <PropertyRef Name="p_id" />
+      </Principal>
+      <Dependent Role="HISTLPU">
+        <PropertyRef Name="p_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище TFOMS_DBModelContainer">
+    <EntitySet Name="HISTLPU" EntityType="Self.HISTLPU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LPU" EntityType="Self.LPU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PEOPLE" EntityType="Self.PEOPLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T001" EntityType="Self.T001" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T007" EntityType="Self.T007" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_HISTLPU_PEOPLE" Association="Self.FK_HISTLPU_PEOPLE">
+      <End Role="PEOPLE" EntitySet="PEOPLE" />
+      <End Role="HISTLPU" EntitySet="HISTLPU" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

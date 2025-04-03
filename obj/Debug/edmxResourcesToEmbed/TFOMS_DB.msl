@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище TFOMS_DBModelContainer" CdmEntityContainer="TFOMS_DBEntities2">
+    <EntitySetMapping Name="HISTLPU">
+      <EntityTypeMapping TypeName="TFOMS_DBModel.HISTLPU">
+        <MappingFragment StoreEntitySet="HISTLPU">
+          <ScalarProperty Name="HISTLPU_id" ColumnName="HISTLPU_id" />
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="lpu" ColumnName="lpu" />
+          <ScalarProperty Name="lpudt" ColumnName="lpudt" />
+          <ScalarProperty Name="lpudx" ColumnName="lpudx" />
+          <ScalarProperty Name="district" ColumnName="district" />
+          <ScalarProperty Name="subdir" ColumnName="subdir" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LPU">
+      <EntityTypeMapping TypeName="TFOMS_DBModel.LPU">
+        <MappingFragment StoreEntitySet="LPU">
+          <ScalarProperty Name="LPU_id" ColumnName="LPU_id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="caption" ColumnName="caption" />
+          <ScalarProperty Name="bossname" ColumnName="bossname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PEOPLE">
+      <EntityTypeMapping TypeName="TFOMS_DBModel.PEOPLE">
+        <MappingFragment StoreEntitySet="PEOPLE">
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="enp" ColumnName="enp" />
+          <ScalarProperty Name="fam" ColumnName="fam" />
+          <ScalarProperty Name="im" ColumnName="im" />
+          <ScalarProperty Name="ot" ColumnName="ot" />
+          <ScalarProperty Name="w" ColumnName="w" />
+          <ScalarProperty Name="dr" ColumnName="dr" />
+          <ScalarProperty Name="lpu" ColumnName="lpu" />
+          <ScalarProperty Name="lpudt" ColumnName="lpudt" />
+          <ScalarProperty Name="lpudx" ColumnName="lpudx" />
+          <ScalarProperty Name="lpuuch" ColumnName="lpuuch" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TFOMS_DBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T001">
+      <EntityTypeMapping TypeName="TFOMS_DBModel.T001">
+        <MappingFragment StoreEntitySet="T001">
+          <ScalarProperty Name="T001_id" ColumnName="T001_id" />
+          <ScalarProperty Name="mcod" ColumnName="mcod" />
+          <ScalarProperty Name="nam_me" ColumnName="nam_me" />
+          <ScalarProperty Name="nom_podr" ColumnName="nom_podr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T007">
+      <EntityTypeMapping TypeName="TFOMS_DBModel.T007">
+        <MappingFragment StoreEntitySet="T007">
+          <ScalarProperty Name="T007_id" ColumnName="T007_id" />
+          <ScalarProperty Name="code_mo" ColumnName="code_mo" />
+          <ScalarProperty Name="name_depth" ColumnName="name_depth" />
+          <ScalarProperty Name="nom_podr" ColumnName="nom_podr" />
+          <ScalarProperty Name="depth" ColumnName="depth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
